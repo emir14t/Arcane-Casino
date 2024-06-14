@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 98);
+
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100vh;
+
+}
+.app-connection-page {
+  height: 100%;
+  width: 100%;
+}
