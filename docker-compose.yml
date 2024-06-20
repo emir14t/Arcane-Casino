@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  angular-frontend:
+    build: ./angular-frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./angular-frontend:/app
+    depends_on:
+      - backend-server
+      - db
+
+  backend-server:
+    build: ./backend-server
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=casino
+      - DB_USER=postgres
+      - DB_PASSWORD=qwerty
+      - DB_PORT=5432
+    volumes:
+      - ./backend-server:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    ports:
+      - "5556:5432"
+    environment:
+      POSTGRES_DB: casino
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty
+    volumes:
+      - ./db:/var/lib/postgresql/data
