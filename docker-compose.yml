@@ -2,17 +2,18 @@ version: '3.8'
 
 services:
   angular-frontend:
-    build: ./angular-frontend
+    build:
+      context: ./client/casino-app
     ports:
       - "4200:4200"
     volumes:
-      - ./angular-frontend:/app
+      - ./client/casino-app:/app
     depends_on:
       - backend-server
       - db
 
   backend-server:
-    build: ./backend-server
+    build: ./server
     ports:
       - "5000:5000"
     environment:
@@ -22,13 +23,12 @@ services:
       - DB_PASSWORD=qwerty
       - DB_PORT=5432
     volumes:
-      - ./backend-server:/app
+      - ./server:/app
     depends_on:
       - db
 
   db:
     image: postgres:16.3-alpine3.20
-    
     ports:
       - "5556:5432"
     environment:
